@@ -6,5 +6,5 @@ data class AddStoryRequest (
     val description: String,
     val photo: File,
     val lat: Float,
-    val long: Float
+    val lon: Float
 )

@@ -18,15 +18,29 @@ class DataPreferences(appContext: Context) {
             preferences[TOKEN_KEY] ?: ""
         }
 
+    val isLogin: Flow<String>
+        get() = dataStore.data.map { preferences ->
+            preferences[IS_LOGIN] ?: "false"
+        }
+
     suspend fun saveToken(token: String) {
         dataStore.edit { preferences ->
             preferences[TOKEN_KEY] = token
+            preferences[IS_LOGIN] = "true"
         }
 
     }
 
+    suspend fun clearToken() {
+        dataStore.edit { preferences ->
+            preferences[TOKEN_KEY] = ""
+            preferences[IS_LOGIN] = "false"
+        }
+    }
+
     companion object {
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val IS_LOGIN = stringPreferencesKey("isLogin")
         private val Context.dataStore: DataStore<Preferences> by
         preferencesDataStore(name = "story_app")
     }

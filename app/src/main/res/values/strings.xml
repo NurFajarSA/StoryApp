@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Story App</string>
+
+    <string name="error">Unexpected error occurred</string>
 </resources>
