@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.domain.request
+package com.dicoding.storyapp.data.request
 
 import java.io.File
 

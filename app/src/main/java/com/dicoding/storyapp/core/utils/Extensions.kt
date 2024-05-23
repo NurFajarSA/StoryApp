@@ -1,5 +1,11 @@
 package com.dicoding.storyapp.core.utils
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.data.response.BaseResponse
 import com.google.gson.Gson
@@ -73,5 +79,13 @@ inline fun <T, U> Response<T>.asFlowStateEventWithAction(
             }
             emit(Resource.OnError(errorMessage))
         }
+    }
+}
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
+
+fun <T> LifecycleOwner.observeData(observable: LiveData<T>, observer: (T) -> Unit) {
+    observable.observe(this) {
+        observer(it)
     }
 }

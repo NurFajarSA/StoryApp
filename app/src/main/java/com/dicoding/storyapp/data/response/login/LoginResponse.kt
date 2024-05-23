@@ -1,7 +1,7 @@
 package com.dicoding.storyapp.data.response.login
 
 import com.dicoding.storyapp.data.response.BaseResponse
-import com.dicoding.storyapp.domain.model.User
+import com.dicoding.storyapp.data.model.User
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(

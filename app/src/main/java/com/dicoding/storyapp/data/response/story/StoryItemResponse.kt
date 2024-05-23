@@ -1,7 +1,7 @@
 package com.dicoding.storyapp.data.response.story
 
 import com.dicoding.storyapp.data.response.BaseResponse
-import com.dicoding.storyapp.domain.model.Story
+import com.dicoding.storyapp.data.model.Story
 
 data class StoryItemResponse(
     val story: Story? = null

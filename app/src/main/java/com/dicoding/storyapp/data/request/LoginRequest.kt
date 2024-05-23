@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.domain.request
+package com.dicoding.storyapp.data.request
 
 data class LoginRequest (
     val email: String,

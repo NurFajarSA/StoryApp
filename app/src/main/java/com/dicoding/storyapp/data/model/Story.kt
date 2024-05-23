@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.domain.model
+package com.dicoding.storyapp.data.model
 
 import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil

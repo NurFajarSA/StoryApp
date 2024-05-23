@@ -1,4 +1,4 @@
-package com.dicoding.storyapp.domain.model
+package com.dicoding.storyapp.data.model
 
 data class User(
     val name: String,
