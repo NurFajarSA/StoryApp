@@ -12,8 +12,6 @@
     <string name="message_login_page">Masukkan dulu datamu ya</string>
     <string name="title_login_page">Sudah siap untuk berbagi cerita?</string>
     <string name="name">Nama</string>
-    <string name="message_main_page">Selamat Bercerita di Dicoding Story.</string>
-    <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
     <string name="add_new_story">Add New Story</string>
     <string name="username">username</string>
@@ -21,5 +19,5 @@
     <string name="deskripsi">Deskripsi</string>
     <string name="story_detail">Story Detail</string>
     <string name="registering">Sedang mandaftarkan</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 </resources>

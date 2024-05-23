@@ -3,12 +3,10 @@ package com.dicoding.storyapp.view.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import com.dicoding.storyapp.data.repository.UserRepository
 import com.dicoding.storyapp.data.request.LoginRequest
 import androidx.lifecycle.viewModelScope
 import com.dicoding.storyapp.core.utils.Resource
-import com.dicoding.storyapp.data.model.User
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

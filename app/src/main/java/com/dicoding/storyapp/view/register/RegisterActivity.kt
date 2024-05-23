@@ -130,7 +130,7 @@ class RegisterActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    protected fun showMessage(uiText: UIText) {
+    private fun showMessage(uiText: UIText) {
         when(uiText){
             is UIText.DynamicText -> {
                 showMessage(uiText.value)

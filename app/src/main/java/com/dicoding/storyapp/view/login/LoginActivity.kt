@@ -11,7 +11,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.core.customviews.EmailEditText
 import com.dicoding.storyapp.core.customviews.PasswordEditText
@@ -128,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    protected fun showMessage(uiText: UIText) {
+    private fun showMessage(uiText: UIText) {
         when(uiText){
             is UIText.DynamicText -> {
                 showMessage(uiText.value)

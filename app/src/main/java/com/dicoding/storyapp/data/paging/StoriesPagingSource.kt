@@ -1,6 +1,5 @@
 package com.dicoding.storyapp.data.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.dicoding.storyapp.data.local.DataPreferences

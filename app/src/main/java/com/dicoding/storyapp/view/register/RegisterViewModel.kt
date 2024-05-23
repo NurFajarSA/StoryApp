@@ -35,8 +35,6 @@ class RegisterViewModel (
                         _state.value = RegisterState.OnLoading(false)
                         _state.value = RegisterState.ShowMessage(result.uiText)
                     }
-
-                    else -> {}
                 }
             }.launchIn(this)
         }

@@ -21,10 +21,8 @@ class StoryDetailActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        with(binding){
-            setSupportActionBar(topAppBar)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val story = IntentCompat.getParcelableExtra(intent, EXTRA_STORY, Story::class.java)
         binding.tvDetailName.text = story?.name

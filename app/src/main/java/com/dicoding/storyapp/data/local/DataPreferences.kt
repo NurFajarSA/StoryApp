@@ -8,8 +8,6 @@ import com.dicoding.storyapp.data.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
-
 class DataPreferences private constructor(private val dataStore: DataStore<Preferences>) {
     val token: Flow<String> = dataStore.data
         .map { preferences ->
