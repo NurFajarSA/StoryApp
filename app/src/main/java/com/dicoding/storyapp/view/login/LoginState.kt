@@ -1,0 +1,10 @@
+package com.dicoding.storyapp.view.login
+
+import com.dicoding.storyapp.core.utils.UIText
+
+sealed class LoginState {
+    data class OnLoading(val state: Boolean = true) : LoginState()
+    data class ShowMessage(val uiText: UIText) : LoginState()
+    object GoToStories : LoginState()
+    object Idle : LoginState()
+}
