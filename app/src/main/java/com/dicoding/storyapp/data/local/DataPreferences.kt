@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.map
 
 
 class DataPreferences private constructor(private val dataStore: DataStore<Preferences>) {
+    val token: Flow<String> = dataStore.data
+        .map { preferences ->
+            preferences[TOKEN_KEY] ?: ""
+        }
 
     suspend fun saveSession(user: User) {
         dataStore.edit { preferences ->

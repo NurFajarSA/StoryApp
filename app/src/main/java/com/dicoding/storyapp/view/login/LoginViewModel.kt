@@ -17,9 +17,6 @@ class LoginViewModel (
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val _isLogin = MutableLiveData<Boolean>()
-    val isLogin: LiveData<Boolean> = _isLogin
-
     private val _state = MutableLiveData<LoginState>()
     val state: LiveData<LoginState> = _state
 
@@ -44,9 +41,5 @@ class LoginViewModel (
                 }
             }.launchIn(this)
         }
-    }
-
-    fun getUser(): LiveData<User> {
-        return repository.getUser().asLiveData()
     }
 }

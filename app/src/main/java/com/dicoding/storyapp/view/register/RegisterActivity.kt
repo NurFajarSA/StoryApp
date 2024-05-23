@@ -47,13 +47,13 @@ class RegisterActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
 
-        emailEditText = binding.emailEditText
-        passwordEditText = binding.passwordEditText
+        emailEditText = binding.edRegisterEmail
+        passwordEditText = binding.edRegisterPassword
     }
 
     private fun setupAction() {
         binding.signupButton.setOnClickListener {
-            val name = binding.nameEditText.text.toString()
+            val name = binding.edRegisterName.text.toString()
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
@@ -63,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
         observeData(viewModel.state) {
             when (it) {
                 is RegisterState.OnLoading -> {
-                    binding.nameEditText.isEnabled = !it.state
+                    binding.edRegisterName.isEnabled = !it.state
                     emailEditText.isEnabled = !it.state
                     passwordEditText.isEnabled = !it.state
                     binding.signupButton.isEnabled = !it.state

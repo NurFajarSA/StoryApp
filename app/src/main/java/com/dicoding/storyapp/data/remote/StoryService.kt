@@ -38,9 +38,9 @@ interface StoryService {
     @GET("stories")
     suspend fun getStories(
         @Header("Authorization") bearerToken: String,
-        @Query("page") page: Int,
-        @Query("size") size: Int,
-        @Query("location") location: Int
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
+        @Query("location") location: Int?
     ): Response<StoriesResponse>
 
     @GET("stories/{id}")

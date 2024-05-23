@@ -26,6 +26,12 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".view.addstory.AddStoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.storydetail.StoryDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.welcome.WelcomeActivity"
             android:exported="false" />
         <activity

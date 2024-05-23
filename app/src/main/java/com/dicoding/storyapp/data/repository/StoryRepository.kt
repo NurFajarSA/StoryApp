@@ -1,10 +1,17 @@
 package com.dicoding.storyapp.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.dicoding.storyapp.core.utils.Resource
 import com.dicoding.storyapp.core.utils.asFlowStateEvent
 import com.dicoding.storyapp.data.local.DataPreferences
+import com.dicoding.storyapp.data.model.Story
+import com.dicoding.storyapp.data.paging.StoriesPagingSource
 import com.dicoding.storyapp.data.remote.StoryService
 import com.dicoding.storyapp.data.request.AddStoryRequest
+import com.dicoding.storyapp.data.response.story.StoriesResponse.Companion.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -15,7 +22,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 class StoryRepository(
     val storyService: StoryService,
-    val dataStore: DataPreferences
+    val dataStore: DataPreferences,
+    val pagingSource: StoriesPagingSource
 ) {
     suspend fun doAddStory(request: AddStoryRequest): Flow<Resource<String>> {
         val token = dataStore.getSession().map { it.token }.first()
@@ -39,13 +47,16 @@ class StoryRepository(
         }
     }
 
-//    fun getStories(): Flow<PagingData<Story>> {
-//        return Pager(
-//            config = PagingConfig(pageSize = 5),
-//        ).flow.map { pagingData ->
-//            pagingData.map { it.toDomain() }
-//        }
-//    }
+    fun getStories(): Flow<PagingData<Story>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10
+            ),
+            pagingSourceFactory = { pagingSource }
+        ).flow.map { pagingData ->
+            pagingData.map { it.toDomain() }
+        }
+    }
 
     companion object {
         @Volatile
@@ -58,6 +69,7 @@ class StoryRepository(
                 instance ?: StoryRepository(
                     storyService = storyService,
                     dataStore = dataPreference,
+                    pagingSource = StoriesPagingSource(storyService, dataPreference)
                 )
             }.also { instance = it }
     }

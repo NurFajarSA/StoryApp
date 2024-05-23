@@ -80,7 +80,7 @@
         tools:alpha="100">
 
         <com.dicoding.storyapp.core.customviews.EmailEditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
@@ -117,7 +117,7 @@
         tools:alpha="100">
 
         <com.dicoding.storyapp.core.customviews.PasswordEditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
