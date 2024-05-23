@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import com.dicoding.storyapp.R
 import com.dicoding.storyapp.core.customviews.EmailEditText
 import com.dicoding.storyapp.core.customviews.PasswordEditText
+import com.dicoding.storyapp.core.utils.UIText
 import com.dicoding.storyapp.core.utils.observeData
 import com.dicoding.storyapp.data.request.RegisterRequest
 import com.dicoding.storyapp.databinding.ActivityRegisterBinding
@@ -67,26 +69,17 @@ class RegisterActivity : AppCompatActivity() {
                     emailEditText.isEnabled = !it.state
                     passwordEditText.isEnabled = !it.state
                     binding.signupButton.isEnabled = !it.state
+                    binding.signupButton.text = if (it.state) {
+                        getString(R.string.registering)
+                    } else {
+                        getString(R.string.signup)
+                    }
                 }
                 is RegisterState.ShowMessage -> {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Oops!")
-                        setMessage(it.uiText.toString())
-                        setPositiveButton("OK") { _, _ -> }
-                        create()
-                        show()
-                    }
+                    showMessage(it.uiText)
                 }
                 RegisterState.GoToLogin -> {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Akun dengan ${emailEditText.text} sudah jadi nih. Yuk, login dan belajar coding.")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+                    finish()
                 }
                 RegisterState.Idle -> {
 
@@ -131,5 +124,20 @@ class RegisterActivity : AppCompatActivity() {
             )
             startDelay = 100
         }.start()
+    }
+
+    private fun showMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    protected fun showMessage(uiText: UIText) {
+        when(uiText){
+            is UIText.DynamicText -> {
+                showMessage(uiText.value)
+            }
+            is UIText.StringResource -> {
+                showMessage(getString(uiText.id))
+            }
+        }
     }
 }

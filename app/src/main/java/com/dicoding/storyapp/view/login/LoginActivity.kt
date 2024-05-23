@@ -9,10 +9,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.dicoding.storyapp.R
 import com.dicoding.storyapp.core.customviews.EmailEditText
 import com.dicoding.storyapp.core.customviews.PasswordEditText
+import com.dicoding.storyapp.core.utils.UIText
 import com.dicoding.storyapp.core.utils.observeData
 import com.dicoding.storyapp.data.request.LoginRequest
 import com.dicoding.storyapp.databinding.ActivityLoginBinding
@@ -66,15 +69,14 @@ class LoginActivity : AppCompatActivity() {
                     emailEditText.isEnabled = !it.state
                     passwordEditText.isEnabled = !it.state
                     binding.loginButton.isEnabled = !it.state
+                    binding.loginButton.text = if (it.state) {
+                        getString(R.string.loading)
+                    } else {
+                        getString(R.string.login)
+                    }
                 }
                 is LoginState.ShowMessage -> {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Error")
-                        setMessage(it.uiText.toString())
-                        setPositiveButton("OK") { _, _ -> }
-                        create()
-                        show()
-                    }
+                    showMessage(it.uiText)
                 }
 
                 LoginState.GoToStories -> {
@@ -122,4 +124,18 @@ class LoginActivity : AppCompatActivity() {
         }.start()
     }
 
+    private fun showMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    protected fun showMessage(uiText: UIText) {
+        when(uiText){
+            is UIText.DynamicText -> {
+                showMessage(uiText.value)
+            }
+            is UIText.StringResource -> {
+                showMessage(getString(uiText.id))
+            }
+        }
+    }
 }

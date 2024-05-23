@@ -32,9 +32,9 @@ class StoriesAdapter : PagingDataAdapter<Story, StoriesAdapter.ListViewHolder>(D
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var imgPhoto: ImageView = itemView.findViewById(R.id.img_photo)
-        private var tvUsername: TextView = itemView.findViewById(R.id.tv_username)
-        private var tvDescription: TextView = itemView.findViewById(R.id.tv_description)
+        private var imgPhoto: ImageView = itemView.findViewById(R.id.iv_item_photo)
+        private var tvUsername: TextView = itemView.findViewById(R.id.tv_item_name)
+        private var tvDescription: TextView = itemView.findViewById(R.id.tv_item_description)
 
         fun bind(story: Story) {
             tvUsername.text = story.name
