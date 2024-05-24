@@ -11,6 +11,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.core.customviews.EmailEditText
 import com.dicoding.storyapp.core.customviews.PasswordEditText
@@ -73,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         getString(R.string.login)
                     }
+                    binding.loginButton.setTextColor(ContextCompat.getColor(this, R.color.white))
                 }
                 is LoginState.ShowMessage -> {
                     showMessage(it.uiText)
@@ -82,8 +84,6 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
-
-                LoginState.Idle -> {}
 
             }
         }

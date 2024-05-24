@@ -18,6 +18,9 @@
     <string name="photo">story photo\n</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="story_detail">Story Detail</string>
-    <string name="registering">Sedang mandaftarkan</string>
+    <string name="registering">Sedang mandaftarkan…</string>
     <string name="loading">Loading…</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
 </resources>

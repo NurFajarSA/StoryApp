@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.databinding.ActivityMainBinding
 import com.dicoding.storyapp.view.ViewModelFactory
+import com.dicoding.storyapp.view.addstory.AddStoryActivity
 import com.dicoding.storyapp.view.main.adapter.StoriesAdapter
 import com.dicoding.storyapp.view.welcome.WelcomeActivity
 import kotlinx.coroutines.flow.collectLatest
@@ -94,6 +95,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+        binding.floatingActionButton.setOnClickListener {
+            startActivity(Intent(this, AddStoryActivity::class.java))
         }
     }
 }

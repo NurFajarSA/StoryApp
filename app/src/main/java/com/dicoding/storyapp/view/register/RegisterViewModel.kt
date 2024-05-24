@@ -20,6 +20,7 @@ class RegisterViewModel (
     val state: LiveData<RegisterState> = _state
 
     fun doRegister(request: RegisterRequest) {
+        _state.value = RegisterState.OnLoading(true)
         viewModelScope.launch {
             repository.doRegister(request).onEach { result ->
                 when (result) {

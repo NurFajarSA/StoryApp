@@ -10,6 +10,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.dicoding.storyapp.R
 import com.dicoding.storyapp.core.customviews.EmailEditText
 import com.dicoding.storyapp.core.customviews.PasswordEditText
@@ -74,15 +75,13 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         getString(R.string.signup)
                     }
+                    binding.signupButton.setTextColor(ContextCompat.getColor(this, R.color.white))
                 }
                 is RegisterState.ShowMessage -> {
                     showMessage(it.uiText)
                 }
                 RegisterState.GoToLogin -> {
                     finish()
-                }
-                RegisterState.Idle -> {
-
                 }
             }
         }
