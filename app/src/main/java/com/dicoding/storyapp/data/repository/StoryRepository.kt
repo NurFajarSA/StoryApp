@@ -26,7 +26,7 @@ class StoryRepository(
     val pagingSource: StoriesPagingSource
 ) {
     suspend fun doAddStory(request: AddStoryRequest): Flow<Resource<String>> {
-        val token = dataStore.getSession().map { it.token }.first()
+        val token = dataStore.token.first()
         val description = request.description.toRequestBody("text/plain".toMediaType())
         val photo = MultipartBody.Part.createFormData(
             name = "photo",

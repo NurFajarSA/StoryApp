@@ -20,8 +20,8 @@ interface StoryService {
         @Header("Authorization") bearerToken: String,
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part,
-        @Part("lat") lat: Float,
-        @Part("lon") lon: Float
+        @Part("lat") lat: Float?,
+        @Part("lon") lon: Float?
     ): Response<BaseResponse>
 
     @Multipart
@@ -29,8 +29,8 @@ interface StoryService {
     suspend fun addStoryGuest(
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part,
-        @Part("lat") lat: Float,
-        @Part("lon") lon: Float
+        @Part("lat") lat: Float?,
+        @Part("lon") lon: Float?
     ): Response<BaseResponse>
 
     @GET("stories")
