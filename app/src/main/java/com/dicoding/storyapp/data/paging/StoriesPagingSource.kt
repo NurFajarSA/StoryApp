@@ -22,13 +22,13 @@ class StoriesPagingSource(
                 bearerToken = bearerToken,
                 page = page,
                 size = 20,
-                location = null
+                location = 1
             )
 
             val dataList = response.body()?.listStory ?: emptyList()
             LoadResult.Page(
                 data = dataList,
-                prevKey = if (page == 1) null else page - 1,
+                prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
                 nextKey = if (dataList.isEmpty()) null else page + 1
             )
         } catch (t: Throwable) {
@@ -41,4 +41,8 @@ class StoriesPagingSource(
             val anchorPage = state.closestPageToPosition(it)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
+
+    private companion object {
+        const val INITIAL_PAGE_INDEX = 1
+    }
 }

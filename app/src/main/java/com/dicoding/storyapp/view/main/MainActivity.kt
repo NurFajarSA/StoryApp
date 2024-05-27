@@ -17,6 +17,7 @@ import com.dicoding.storyapp.R
 import com.dicoding.storyapp.databinding.ActivityMainBinding
 import com.dicoding.storyapp.view.ViewModelFactory
 import com.dicoding.storyapp.view.addstory.AddStoryActivity
+import com.dicoding.storyapp.view.main.adapter.LoadingStateAdapter
 import com.dicoding.storyapp.view.main.adapter.StoriesAdapter
 import com.dicoding.storyapp.view.welcome.WelcomeActivity
 import kotlinx.coroutines.flow.collectLatest
@@ -68,7 +69,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAdapter() {
         storiesAdapter = StoriesAdapter()
-        rvStories.adapter = storiesAdapter
+        rvStories.adapter = storiesAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storiesAdapter.retry()
+            }
+        )
 
         storiesAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading) {

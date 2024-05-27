@@ -50,7 +50,7 @@ class StoryRepository(
     fun getStories(): Flow<PagingData<Story>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 10
+                pageSize = 5
             ),
             pagingSourceFactory = { pagingSource }
         ).flow.map { pagingData ->
