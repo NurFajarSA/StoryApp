@@ -19,5 +19,17 @@ class StoriesResponse : BaseResponse() {
             lat = lat ?: 0.0F,
             lon = lon ?: 0.0F
         )
+
+        fun List<StoryItem>?.toDomain() : List<Story> = this?.map {
+            Story(
+                id = it.id.orEmpty(),
+                name = it.name.orEmpty(),
+                description = it.description.orEmpty(),
+                photoUrl = it.photoUrl.orEmpty(),
+                createdAt = it.createdAt.orEmpty(),
+                lat = it.lat ?: 0.0F,
+                lon = it.lon ?: 0.0F
+            )
+        } ?: emptyList()
     }
 }

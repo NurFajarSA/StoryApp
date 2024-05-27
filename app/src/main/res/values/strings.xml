@@ -24,4 +24,6 @@
     <string name="gallery">Gallery</string>
     <string name="upload">Upload</string>
     <string name="retry">Coba lagi</string>
+    <string name="map">Map</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

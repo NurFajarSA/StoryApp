@@ -19,6 +19,7 @@ import com.dicoding.storyapp.view.ViewModelFactory
 import com.dicoding.storyapp.view.addstory.AddStoryActivity
 import com.dicoding.storyapp.view.main.adapter.LoadingStateAdapter
 import com.dicoding.storyapp.view.main.adapter.StoriesAdapter
+import com.dicoding.storyapp.view.maps.MapsActivity
 import com.dicoding.storyapp.view.welcome.WelcomeActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -97,6 +98,9 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.action_logout -> {
                     viewModel.logout()
+                }
+                R.id.action_map -> {
+                    startActivity(Intent(this, MapsActivity::class.java))
                 }
             }
             true

@@ -58,6 +58,18 @@ class StoryRepository(
         }
     }
 
+    suspend fun getStoriesWithLocation(): Flow<Resource<List<Story>>> {
+        val bearerToken = "Bearer ${dataStore.token.first()}"
+        return storyService.getStories(
+            bearerToken = bearerToken,
+            page = null,
+            size = null,
+            location = 1
+        ).asFlowStateEvent(
+            mapper = { it.listStory.toDomain() }
+        )
+    }
+
     companion object {
         @Volatile
         private var instance: StoryRepository? = null
