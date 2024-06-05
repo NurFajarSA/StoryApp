@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 class StoriesResponse : BaseResponse() {
 
     @SerializedName("listStory")
-    val listStory: List<StoryItem>? = null
+    var listStory: List<StoryItem>? = null
 
     companion object {
         fun StoryItem.toDomain() : Story = Story(

@@ -1,8 +1,11 @@
 package com.dicoding.storyapp.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.liveData
 import androidx.paging.map
 import com.dicoding.storyapp.core.utils.Resource
 import com.dicoding.storyapp.core.utils.asFlowStateEvent
@@ -14,7 +17,6 @@ import com.dicoding.storyapp.data.request.AddStoryRequest
 import com.dicoding.storyapp.data.response.story.StoriesResponse.Companion.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -47,15 +49,11 @@ class StoryRepository(
         }
     }
 
-    fun getStories(): Flow<PagingData<Story>> {
+    fun getStories(): LiveData<PagingData<Story>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 5
-            ),
+            config = PagingConfig(pageSize = 5),
             pagingSourceFactory = { pagingSource }
-        ).flow.map { pagingData ->
-            pagingData.map { it.toDomain() }
-        }
+        ).liveData.map { it -> it.map { it.toDomain() } }
     }
 
     suspend fun getStoriesWithLocation(): Flow<Resource<List<Story>>> {

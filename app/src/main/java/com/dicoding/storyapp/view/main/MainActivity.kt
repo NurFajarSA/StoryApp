@@ -9,11 +9,11 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.storyapp.R
+import com.dicoding.storyapp.core.utils.observeData
 import com.dicoding.storyapp.databinding.ActivityMainBinding
 import com.dicoding.storyapp.view.ViewModelFactory
 import com.dicoding.storyapp.view.addstory.AddStoryActivity
@@ -21,8 +21,6 @@ import com.dicoding.storyapp.view.main.adapter.LoadingStateAdapter
 import com.dicoding.storyapp.view.main.adapter.StoriesAdapter
 import com.dicoding.storyapp.view.maps.MapsActivity
 import com.dicoding.storyapp.view.welcome.WelcomeActivity
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
@@ -86,10 +84,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getStoriesData() {
-        lifecycleScope.launch {
-            viewModel.getStories().collectLatest { pagingData ->
-                storiesAdapter.submitData(pagingData)
-            }
+        observeData(viewModel.storiesList) { pagingData ->
+            storiesAdapter.submitData(lifecycle, pagingData)
         }
     }
 

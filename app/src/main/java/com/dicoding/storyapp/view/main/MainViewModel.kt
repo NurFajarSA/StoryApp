@@ -10,17 +10,16 @@ import com.dicoding.storyapp.data.model.Story
 import com.dicoding.storyapp.data.model.User
 import com.dicoding.storyapp.data.repository.StoryRepository
 import com.dicoding.storyapp.data.repository.UserRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val userRepository: UserRepository,
-    private val storyRepository: StoryRepository
+    storyRepository: StoryRepository
 ): ViewModel() {
 
-    fun getStories(): Flow<PagingData<Story>> {
-        return storyRepository.getStories().cachedIn(viewModelScope)
-    }
+    val storiesList: LiveData<PagingData<Story>> =
+        storyRepository.getStories().cachedIn(viewModelScope)
+
 
     fun getUser(): LiveData<User> {
         return userRepository.getUser().asLiveData()
