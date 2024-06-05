@@ -53,7 +53,7 @@ class StoryRepository(
         return Pager(
             config = PagingConfig(pageSize = 5),
             pagingSourceFactory = { pagingSource }
-        ).liveData.map { it -> it.map { it.toDomain() } }
+        ).liveData
     }
 
     suspend fun getStoriesWithLocation(): Flow<Resource<List<Story>>> {

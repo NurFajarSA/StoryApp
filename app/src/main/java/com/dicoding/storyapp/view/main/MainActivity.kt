@@ -13,7 +13,6 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.storyapp.R
-import com.dicoding.storyapp.core.utils.observeData
 import com.dicoding.storyapp.databinding.ActivityMainBinding
 import com.dicoding.storyapp.view.ViewModelFactory
 import com.dicoding.storyapp.view.addstory.AddStoryActivity
@@ -46,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         setupView()
         setupAction()
         setupAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
         getStoriesData()
     }
 
@@ -84,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getStoriesData() {
-        observeData(viewModel.storiesList) { pagingData ->
+        viewModel.getStoriesList().observe(this) { pagingData ->
             storiesAdapter.submitData(lifecycle, pagingData)
         }
     }

@@ -55,7 +55,7 @@ class MainViewModelTest {
         Mockito.`when`(storyRepository.getStories()).thenReturn(expectedResult)
         mainViewModel = MainViewModel(userRepository, storyRepository)
 
-        val actualResult = mainViewModel.storiesList.getOrAwaitValue()
+        val actualResult = mainViewModel.getStoriesList().getOrAwaitValue()
 
 
         val differ = AsyncPagingDataDiffer(
@@ -67,7 +67,7 @@ class MainViewModelTest {
 
         Assert.assertNotNull(differ.snapshot())
         Assert.assertEquals(dummyData.size, differ.snapshot().size)
-        Assert.assertEquals(dummyData[0].description, differ.snapshot()[0]?.description)
+        Assert.assertEquals(dummyData[0], differ.snapshot()[0])
     }
 
     @Test
@@ -80,7 +80,7 @@ class MainViewModelTest {
         Mockito.`when`(storyRepository.getStories()).thenReturn(expectedResult)
         mainViewModel = MainViewModel(userRepository, storyRepository)
 
-        val actualResult = mainViewModel.storiesList.getOrAwaitValue()
+        val actualResult = mainViewModel.getStoriesList().getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
             diffCallback = Story.DIFF_CALLBACK,
